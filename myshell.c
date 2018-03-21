@@ -1,0 +1,8 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+#include <stdlib.h>
+
+int what (int argc, char *argv[]) {
+	exit(0);
+}
