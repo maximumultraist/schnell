@@ -16,6 +16,7 @@
 #include <errno.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <dirent.h>
 
 
 #endif /* MYCOMMANDS_H_ */

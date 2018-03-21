@@ -1,9 +1,4 @@
-#include<dirent.h>
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-
-
+#include "mycommands.h"
 
 int main(int argc, char **argv) {
 	struct dirent **fileNames;
