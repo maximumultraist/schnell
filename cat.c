@@ -1,12 +1,11 @@
-#include<stdio.h>
-#include<string.h>
+#include "mycommands.h"
 #define fileNameSizeMax 255
 /*
 * Made fileNameSizeMac global to the function bc it 
 * was unhappy declaring it in main
 */
 
-int main (int argc, char *argv[]) {
+int cat (int argc, char *argv[]) {
 	FILE *fp;
 	char fileName[fileNameSizeMax], ch;
 	int i;

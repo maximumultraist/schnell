@@ -1,22 +1,4 @@
-#include "cp.h"
-
-static int mmap_copy(int ifd, int ofd)
-{
-	off_t len;
-	void *ptr;
-
-	len = lseek(ifd, 0, SEEK_END);
-	if (len <= 0)
-		return 1;
-	ptr = mmap(NULL, len, PROT_READ, MAP_PRIVATE, ifd, 0);
-	if (ptr == MAP_FAILED)
-		return 1;
-	if (write(ofd, ptr, len) != len)
-		return 1;
-	if (munmap(ptr, len))
-		return 1;
-	return 0;
-}
+#include "mycommands.h"
 
 static int buffer_copy(int ifd, int ofd)
 {
@@ -58,8 +40,8 @@ int cp(int argc, char *argv[])
 		return 1;
 	}
 
-	ret = mmap_copy(ifd, ofd);
-	if (ret)
+	// ret = mmap_copy(ifd, ofd);
+	// if (ret)
 		ret = buffer_copy(ifd, ofd);
 	if (close(ifd) || close(ofd))
 		return 1;

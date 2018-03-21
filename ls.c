@@ -1,6 +1,6 @@
 #include "mycommands.h"
 
-int main(int argc, char **argv) {
+int ls(int argc, char **argv) {
 	struct dirent **fileNames;
 	int i;
 	if (argc < 1) {
