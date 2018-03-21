@@ -1,5 +1,4 @@
-#include "mycommands.h"
-#include <sys/mman.h>
+#include "cp.h"
 
 static int mmap_copy(int ifd, int ofd)
 {
@@ -37,7 +36,7 @@ static int buffer_copy(int ifd, int ofd)
 }
 
 /* Usage: cp FILES... DEST */
-int main(int argc, char *argv[])
+int cp(int argc, char *argv[])
 {
 	int ifd, ofd, ret;
 

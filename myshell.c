@@ -2,7 +2,9 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
+#include "cp.h"
 
-int what (int argc, char *argv[]) {
+int main (int argc, char *argv[]) {
+	cp(argc, argv);
 	exit(0);
 }
