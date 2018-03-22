@@ -4,7 +4,7 @@ int cat (int argc, char *argv[]) {
 	FILE *fp;
 	char fname[NAME_MAX], ch;
 
-		strncpy(fname, argv[1], NAME_MAX);
+		strncpy(fname, argv[argc], NAME_MAX);
 		fp = fopen(fname, "r");
 
 		if (fp == NULL) {

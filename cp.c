@@ -17,27 +17,18 @@ static int buffer_copy(int ifd, int ofd)
 	return 0;
 }
 
-/* Usage: cp FILES... DEST */
 int cp(int argc, char *argv[])
 {
 	int ifd, ofd, ret;
 
-	if (argc != 3) {
-		fprintf(stderr, "usage: %s input output\n", argv[0]);
-		return 1;
+	if ((ifd = open(argv[1], O_RDONLY)) < 0) {
+		fprintf(stderr, strerror(errno));
+		return -1;
 	}
 
-	ifd = open(argv[1], O_RDONLY);
-	if (ifd < 0) {
-		fprintf(stderr, "%s: %s: %s\n",
-			argv[0], argv[1], strerror(errno));
-		return 1;
-	}
-	ofd = open(argv[2], O_CREAT | O_TRUNC | O_WRONLY, 0666);
-	if (ofd < 0) {
-		fprintf(stderr, "%s: %s: %s\n",
-			argv[0], argv[2], strerror(errno));
-		return 1;
+	if ((ofd = open(argv[2], O_CREAT | O_TRUNC | O_WRONLY, 0777)) < 0) {
+		fprintf(stderr, strerror(errno));
+		return -2;
 	}
 
 	ret = buffer_copy(ifd, ofd);
