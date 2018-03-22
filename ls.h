@@ -1,8 +1,5 @@
 /*
  * ls.h
- *
- *  Created on: Mar 21, 2018
- *      Author: leopoldbloom
  */
 
 #ifndef LS_H_

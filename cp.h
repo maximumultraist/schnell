@@ -1,8 +1,6 @@
 /*
  * cp.h
  *
- *  Created on: Mar 21, 2018
- *      Author: leopoldbloom
  */
 
 #ifndef CP_H_

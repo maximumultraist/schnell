@@ -1,24 +1,37 @@
-#include<stdio.h>
-#include<string.h>
+#include "grep.h"
 
-int main(int argc,char *argv[]) {
+int grep(int argc, char *argv[]) {
 
 	char *fn;
 	char *pattern;
-	char *buff[200];
 	FILE *fp;
+	size_t n = 0;
+	int status;
 
 	pattern = argv[1];
-	fn = argv[2];
 
-	fp=fopen(fn,"r");
+	for (int i = 2; i <= argc; i++) {
 
-	while(!feof(fp))
-	{
-		fgets(buff,1000,fp);
-		if(strstr(buff,pattern)) {
-		  printf("%s",buff);
+		char *line;
+		char *needle;
+		uint32_t lineno = 1;
+
+		fn = argv[i];
+
+		if ((fp = fopen(fn,"r")) == NULL){
+			fprintf(stderr, "file \'%s\' does not exist!\n", fn);
+			return -1;
 		}
-		fclose(fp);
+
+		while((status = getline(&line, &n, fp)) != -1)
+		{
+			if((needle = strstr(line, pattern)) != NULL) {
+				printf("%s, at line %d: %s", fn, lineno, needle);
+			}
+			lineno++;
+		}
 	}
+
+	fclose(fp);
+	return 0;
 }

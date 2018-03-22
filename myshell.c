@@ -1,19 +1,20 @@
 #include "cp.h"
 #include "cat.h"
 #include "ls.h"
+#include "grep.h"
 
 void freeargs(char **argv);
 
-int main (int argc, char *argv[]) {
+int main (void) {
 	char input[1024];
 
 	 do {	// main loop
 		int ac = 0;
 		char **av;
-		av = malloc(4 * sizeof(char*));
+		av = malloc(MAX_ARGS * sizeof(char*));
 
-		for (int i = 0; i < 4; i++) {
-			av[i] = calloc(384, sizeof(char));
+		for (int i = 0; i < MAX_ARGS; i++) {
+			av[i] = calloc(MAX_NAME, sizeof(char));
 		}
 
 		memset(input, 0, 1024 * sizeof(char));
@@ -41,18 +42,17 @@ int main (int argc, char *argv[]) {
 			cp(ac, av);
 			freeargs(av);
 		} else if (strcmp(*av,"grep") == 0) {
-
+			grep(ac, av);
+			freeargs(av);
 		}
 
 	} while (strcmp(input,"exit") != 0);
 
-	exit(0);
+	exit(EXIT_SUCCESS);
 }
 
 void freeargs(char **argv) {
-	free(argv[0]);
-	free(argv[1]);
-	free(argv[2]);
-	free(argv[4]);
+	for (int i = 0; i < MAX_ARGS; i++)
+		free(argv[i]);
 	free(argv);
 }

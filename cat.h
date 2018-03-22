@@ -1,8 +1,6 @@
 /*
  * cat.h
  *
- *  Created on: Mar 21, 2018
- *      Author: leopoldbloom
  */
 
 #ifndef CAT_H_
