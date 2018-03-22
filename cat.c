@@ -1,20 +1,23 @@
-#include "cat.h"
+#include<fcntl.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
 
-int cat (int argc, char *argv[]) {
-	FILE *fp;
-	char fname[NAME_MAX], ch;
-
-		strncpy(fname, argv[argc], NAME_MAX);
-		fp = fopen(fname, "r");
-
-		if (fp == NULL) {
-			printf("%s: No such file or directory\n", fname);
-			return 0;
-		}
-		while((ch = fgetc(fp)) != EOF) {
-			putchar(ch);
-		}
-		fclose(fp);
-
-	return 0;
+int main(int argc, char *argv[]) {
+	if (argc != 2) {
+		printf("\nInvalid argument count");
+		exit(1);
+	}
+	int fdold, count;
+	char buffer[2048];
+	fdold=open(argv[1], O_RDONLY);
+	if(fdold == -1) {
+		printf("File read error");
+		exit(1);
+	}	
+	while ((count=read(fdold, buffer, sizeof(buffer)))>0) {
+		printf("%s", buffer);
+	}
+	exit(0);
 }
+
