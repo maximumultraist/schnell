@@ -1,7 +1,4 @@
-#include<fcntl.h>
-#include<stdio.h>
-#include<stdlib.h>
-#include<unistd.h>
+#include "cp.h"
 
 int main(int argc, char *argv[]) {
 	if (argc != 2) {
