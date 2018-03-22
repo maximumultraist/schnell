@@ -2,9 +2,9 @@
 
 int cat (int argc, char *argv[]) {
 	FILE *fp;
-	char fname[NAME_MAX], ch;
+	char fname[MAX_NAME], ch;
 
-		strncpy(fname, argv[argc], NAME_MAX);
+		strncpy(fname, argv[argc], MAX_NAME);
 		fp = fopen(fname, "r");
 
 		if (fp == NULL) {

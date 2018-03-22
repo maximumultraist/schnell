@@ -10,9 +10,9 @@ int main (int argc, char *argv[]) {
 	 do {	// main loop
 		int ac = 0;
 		char **av;
-		av = malloc(3 * sizeof(char*));
+		av = malloc(4 * sizeof(char*));
 
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 4; i++) {
 			av[i] = calloc(384, sizeof(char));
 		}
 
@@ -53,5 +53,6 @@ void freeargs(char **argv) {
 	free(argv[0]);
 	free(argv[1]);
 	free(argv[2]);
+	free(argv[4]);
 	free(argv);
 }
