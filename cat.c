@@ -1,18 +1,14 @@
-#include "cp.h"
+#include "cat.h"
 
 int cat (int argc, char *argv[]) {
 	FILE *fp;
-	char fileName[NAME_MAX], ch;
+	char fname[NAME_MAX], ch;
 
-	if (argc < 1) {
-		printf("Usage mycat <filename> \n");
-		return 0;
-	}
-		strncpy(fileName, argv[1], NAME_MAX);
-		fp = fopen(fileName, "r");
+		strncpy(fname, argv[1], NAME_MAX);
+		fp = fopen(fname, "r");
 
 		if (fp == NULL) {
-			printf("%s: No such file or directory\n", fileName);
+			printf("%s: No such file or directory\n", fname);
 			return 0;
 		}
 		while((ch = fgetc(fp)) != EOF) {
