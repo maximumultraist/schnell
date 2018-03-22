@@ -3,10 +3,8 @@
 
 int main (int argc, char *argv[]) {
 	char input[1024];
-	//int ac = 1;
-	//char * av[] = {"subdir.mk", "/home/leopoldbloom/dropkick.sh"};
-	//cat(ac, av);
-	 do {
+
+	 do {	// main loop
 		int ac = 0;
 		char **av;
 		av = malloc(3 * sizeof(char*));
@@ -21,8 +19,7 @@ int main (int argc, char *argv[]) {
 		input[strcspn(input, "\n")] = 0; // strip newline character from input
 
 		char *temp = strtok(input, " ");
-		char token[5];
-		strcpy(token, temp);
+		strcpy(*av, temp);
 		while (temp != NULL) {
 			temp = strtok(NULL, " ");
 			ac++;
@@ -31,8 +28,8 @@ int main (int argc, char *argv[]) {
 			sprintf(*(av + ac), "%s", temp);
 		}
 
-		if (strcmp(token,"cat") == 0) {
-			cat(--ac, av);
+		if (strcmp(*av,"cat") == 0) {
+			cat(ac, av);
 			free(av);
 		}
 

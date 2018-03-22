@@ -1,6 +1,6 @@
 #include "cp.h"
 
-int main(int argc, char *argv[]) {
+int cat(int argc, char *argv[]) {
 	if (argc != 2) {
 		printf("\nInvalid argument count");
 		exit(1);
@@ -15,6 +15,6 @@ int main(int argc, char *argv[]) {
 	while ((count=read(fdold, buffer, sizeof(buffer)))>0) {
 		printf("%s", buffer);
 	}
-	exit(0);
+	return 0;
 }
 
