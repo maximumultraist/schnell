@@ -22,9 +22,9 @@ int main (int argc, char *argv[]) {
 		strcpy(*av, temp);
 		while (temp != NULL) {
 			temp = strtok(NULL, " ");
-			ac++;
 			if (temp == NULL)
 				break;
+			ac++;
 			sprintf(*(av + ac), "%s", temp);
 		}
 

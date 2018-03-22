@@ -9,7 +9,7 @@
 #define CAT_H_
 
 #include "mycommands.h"
-#define NAME_MAX 255
+#define NAME_MAX 384
 
 int cat (int argc, char *argv[]);
 
