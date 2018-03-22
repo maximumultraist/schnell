@@ -1,4 +1,4 @@
-#include "mycommands.h"
+#include "cp.h"
 
 static int buffer_copy(int ifd, int ofd)
 {
@@ -40,9 +40,8 @@ int cp(int argc, char *argv[])
 		return 1;
 	}
 
-	// ret = mmap_copy(ifd, ofd);
-	// if (ret)
-		ret = buffer_copy(ifd, ofd);
+	ret = buffer_copy(ifd, ofd);
+
 	if (close(ifd) || close(ofd))
 		return 1;
 	return ret;

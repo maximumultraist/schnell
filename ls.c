@@ -1,4 +1,4 @@
-#include "mycommands.h"
+#include "ls.h"
 
 int ls(int argc, char **argv) {
 	struct dirent **fileNames;

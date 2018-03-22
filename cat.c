@@ -1,31 +1,20 @@
-#include "mycommands.h"
-#define fileNameSizeMax 255
-/*
-* Made fileNameSizeMac global to the function bc it 
-* was unhappy declaring it in main
-*/
+#include "cat.h"
 
 int cat (int argc, char *argv[]) {
 	FILE *fp;
-	char fileName[fileNameSizeMax], ch;
-	int i;
+	char fname[NAME_MAX], ch;
 
-	if (argc < 1) {
-		printf("Usage mycat <filename> \n");
-		return 0;
-	}
-	for (i = 1; i <= argc; i++) {
-		strncpy(fileName, argv[i], fileNameSizeMax);
-		fp = fopen(fileName, "r");
+		strncpy(fname, argv[argc], NAME_MAX);
+		fp = fopen(fname, "r");
 
 		if (fp == NULL) {
-			printf("%s: No such file or directory\n", fileName);
+			printf("%s: No such file or directory\n", fname);
 			return 0;
 		}
 		while((ch = fgetc(fp)) != EOF) {
 			putchar(ch);
 		}
 		fclose(fp);
-	}
+
 	return 0;
 }
