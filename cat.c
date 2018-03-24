@@ -11,7 +11,7 @@ int cat (int argc, char *argv[]) {
 			printf("%s: No such file or directory\n", fname);
 			return 0;
 		}
-		while((ch = fgetc(fp)) != EOF) {
+		while((ch = (char) fgetc(fp)) != EOF) {
 			putchar(ch);
 		}
 		fclose(fp);

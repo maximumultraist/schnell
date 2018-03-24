@@ -6,7 +6,7 @@ int grep(int argc, char *argv[]) {
 	char *pattern;
 	FILE *fp;
 	size_t n = 0;
-	int status;
+	//int status;
 
 	pattern = argv[1];
 
@@ -23,15 +23,15 @@ int grep(int argc, char *argv[]) {
 			return -1;
 		}
 
-		while((status = getline(&line, &n, fp)) != -1)
+		while((getline(&line, &n, fp)) != -1)
 		{
 			if((needle = strstr(line, pattern)) != NULL) {
 				printf("%s, at line %d: %s", fn, lineno, needle);
 			}
 			lineno++;
 		}
+		fclose(fp);
 	}
 
-	fclose(fp);
 	return 0;
 }
