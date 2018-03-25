@@ -12,7 +12,7 @@ int grep(int argc, char *argv[]) {
 
 	for (int i = 2; i <= argc; i++) {
 
-		char *line;
+		char *line = NULL;
 		char *needle;
 		uint32_t lineno = 1;
 
@@ -31,6 +31,7 @@ int grep(int argc, char *argv[]) {
 			lineno++;
 		}
 		fclose(fp);
+		free(line);
 	}
 
 	return 0;
