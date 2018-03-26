@@ -13,7 +13,7 @@ all: $(BIN)
 clean:
 	rm -f $(BIN) *.o
 
-debug: CCFLAGS += -DDEBUG -g -O0 -fno-inline
+debug: CCFLAGS += -DDEBUG -g3 -O0 -fno-inline
 debug: $(BIN)
 
 remake: clean all
