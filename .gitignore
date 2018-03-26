@@ -55,4 +55,5 @@ Release/
 .cproject
 language.settings.xml
 .project
+.idea/
 obj/
