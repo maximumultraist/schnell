@@ -14,7 +14,7 @@ int main (void) {
 		av = malloc(MAX_ARGS * sizeof(char*));
 
 		for (int i = 0; i < MAX_ARGS; i++) {
-			av[i] = calloc(MAX_NAME, sizeof(char));
+			av[i] = calloc(NAME_MAX, sizeof(char));
 		}
 
 		memset(input, 0, 1024 * sizeof(char));

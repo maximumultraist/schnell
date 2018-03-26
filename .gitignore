@@ -55,3 +55,4 @@ Release/
 .cproject
 language.settings.xml
 .project
+obj/
