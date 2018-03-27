@@ -10,8 +10,7 @@ int main (void) {
 
 	 do {	// main loop
 		int ac = 0;
-		char **av;
-		av = malloc(MAX_ARGS * sizeof(char*));
+		char *av[MAX_ARGS];
 
 		for (int i = 0; i < MAX_ARGS; i++) {
 			av[i] = calloc(NAME_MAX, sizeof(char));
@@ -54,5 +53,4 @@ int main (void) {
 void freeargs(char **argv) {
 	for (int i = 0; i < MAX_ARGS; i++)
 		free(argv[i]);
-	free(argv);
 }
