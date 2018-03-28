@@ -28,13 +28,13 @@ int main (void) {
              break;
 
 		char *temp = strtok(input, " ");
-		strncpy(*av, temp, 255*sizeof(char));
+		strncpy(*av, temp, NAME_MAX*sizeof(char));
 		while (temp != NULL) {
 			temp = strtok(NULL, " ");
 			if (temp == NULL)
 				break;
 			ac++;
-			sprintf(*(av + ac), "%s", temp);
+			strncpy(av[ac], temp, NAME_MAX*sizeof(char));
 		}
 
 		if (strcmp(*av,"cat") == 0) {
