@@ -12,8 +12,11 @@ int main (void) {
 		int ac = 0;
 		char *av[MAX_ARGS];
 
-		for (int i = 0; i < MAX_ARGS; i++) {
-			av[i] = calloc(NAME_MAX, sizeof(char));
+		for (int i = 0; i < MAX_ARGS; i++){
+			if (!(av[i] = calloc(NAME_MAX, sizeof(char)))){
+                fprintf(stderr, "memory allocation failure, exiting!");
+                exit(ENOMEM);
+            }
 		}
 
 		memset(input, 0, 1024 * sizeof(char));
