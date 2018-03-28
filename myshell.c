@@ -33,7 +33,11 @@ int main (void) {
 			temp = strtok(NULL, " ");
 			if (temp == NULL)
 				break;
+
 			ac++;
+            if (ac >= MAX_ARGS)
+                break;
+
 			strncpy(av[ac], temp, NAME_MAX*sizeof(char));
 		}
 
