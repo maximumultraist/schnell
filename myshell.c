@@ -8,7 +8,7 @@ void freeargs(char *argv[]);
 int main (void) {
 	char input[1024];
 
-	 do {	// main loop
+	 while(1) {	// main loop
 		int ac = 0;
 		char *av[MAX_ARGS];
 
@@ -24,8 +24,11 @@ int main (void) {
 		fgets(input, 1024, stdin);
 		input[strcspn(input, "\n")] = '\0'; // strip newline character from input
 
+         if (strcmp(input,"exit") == 0)
+             break;
+
 		char *temp = strtok(input, " ");
-		strcpy(*av, temp);
+		strncpy(*av, temp, 255*sizeof(char));
 		while (temp != NULL) {
 			temp = strtok(NULL, " ");
 			if (temp == NULL)
@@ -48,7 +51,7 @@ int main (void) {
 			freeargs(av);
 		}
 
-	} while (strcmp(input,"exit") != 0);
+	}
 
 	exit(EXIT_SUCCESS);
 }
