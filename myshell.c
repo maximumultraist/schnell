@@ -3,7 +3,7 @@
 #include "ls.h"
 #include "grep.h"
 
-void freeargs(char **argv);
+void freeargs(char *argv[]);
 
 int main (void) {
 	char input[1024];
@@ -50,7 +50,7 @@ int main (void) {
 	exit(EXIT_SUCCESS);
 }
 
-void freeargs(char **argv) {
+void freeargs(char *argv[]) {
 	for (int i = 0; i < MAX_ARGS; i++)
 		free(argv[i]);
 }
