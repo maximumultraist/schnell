@@ -22,7 +22,7 @@ int main (void) {
 		memset(input, 0, 1024 * sizeof(char));
 		printf("@: ");
 		fgets(input, 1024, stdin);
-		input[strcspn(input, "\n")] = 0; // strip newline character from input
+		input[strcspn(input, "\n")] = '\0'; // strip newline character from input
 
 		char *temp = strtok(input, " ");
 		strcpy(*av, temp);
