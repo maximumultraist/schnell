@@ -1,3 +1,4 @@
+#include <sys/wait.h>
 #include "cp.h"
 #include "cat.h"
 #include "ls.h"
@@ -40,6 +41,7 @@ int main (void) {
 
 			strncpy(av[ac], temp, NAME_MAX*sizeof(char));
 		}
+		 av[ac+1] = NULL;
 
 		if (strcmp(*av,"cat") == 0) {
 			cat(ac, av);
@@ -53,6 +55,21 @@ int main (void) {
 		} else if (strcmp(*av,"grep") == 0) {
 			grep(ac, av);
 			freeargs(av);
+		} else {
+			pid_t pid;
+
+			if ((pid = fork()) == -1) { // fork() to create child process, store the status of the fork() in pid
+				fprintf(stderr, "Child process creation/fork failed!\n");
+			}
+
+			if (pid == 0) { // child process block; if pid == 0 then it's the child process
+				execv(av[0], av);
+				perror("exec failed!");
+				exit(EXIT_FAILURE);
+			} else { // parent process block; waits on the return value of the child
+				int status;
+				waitpid(pid, &status, 0);
+			}
 		}
 
 	}
