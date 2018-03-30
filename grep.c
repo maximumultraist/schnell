@@ -6,7 +6,6 @@ int grep(int argc, char *argv[]) {
 	char *pattern;
 	FILE *fp;
 	size_t n = 0;
-	//int status;
 
 	pattern = argv[1];
 

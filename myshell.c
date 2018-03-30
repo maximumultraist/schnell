@@ -57,18 +57,22 @@ int main (void) {
 			freeargs(av);
 		} else {
 			pid_t pid;
+            int status;
 
 			if ((pid = fork()) == -1) { // fork() to create child process, store the status of the fork() in pid
 				fprintf(stderr, "Child process creation/fork failed!\n");
 			}
 
 			if (pid == 0) { // child process block; if pid == 0 then it's the child process
-				execv(av[0], av);
-				perror("exec failed!");
+				execvp(av[0], av);
+				perror("exec failed!"); // should only get to this point if the execvp() call fails
 				exit(EXIT_FAILURE);
 			} else { // parent process block; waits on the return value of the child
-				int status;
-				waitpid(pid, &status, 0);
+			 while (1){
+			   waitpid(pid, &status, WUNTRACED);
+			   if (WIFEXITED(status) || WIFSIGNALED(status))
+			   	break;
+			 }
 			}
 		}
 
