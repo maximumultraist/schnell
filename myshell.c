@@ -61,8 +61,7 @@ int main(void)
 
         char* temp = strtok(input, " "); // Tokenize the input string using the space character as a delimiter
         asprintf(av, "%s", input); // put first tokenized string into the zeroth position of the argument vector
-        while (temp
-                !=NULL) { // Loop to continue tokenizing the input string and filling the argument vector until the input string ends
+        while (temp!=NULL) { // Loop to continue tokenizing the input string and filling the argument vector until the input string ends
             temp = strtok(NULL, " ");
             if (temp==NULL)
                 break;
