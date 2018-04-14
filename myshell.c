@@ -4,6 +4,11 @@
 #include "ls.h"
 #include "grep.h"
 
+/* This #ifndef block is included to add asprintf() support to platforms that do not have it in their C standard library.
+ * Even though asprintf() is a non-standard C function, it's extremely useful to include as it greatly simplifies and secures the allocation
+ * of memory for strings. Credit goes to: https://github.com/b-k/21st-Century-Examples/blob/master/asprintf.c
+ */
+
 #ifndef HAVE_ASPRINTF
 #include <stdarg.h>
 
@@ -35,34 +40,26 @@ int asprintf(char **str, char* fmt, ...){
 
 #endif
 
-void freeargs(int argc, char *argv[]);
+void freeargs(int argc, char *argv[]); // argument array memory-freeing function
 
-int main (void) {
-	char input[1024];
+int main (void) {   // and finally, That Good Shit
+	char input[1024]; // allocate a fixed-size character array of 1024 characters for the input string
 
 	 while(1) {	// main loop
 		int ac = 0;
 		char *av[MAX_ARGS];
 
-		/* for (int i = 0; i < MAX_ARGS; i++){
-			if (!(av[i] = calloc(NAME_MAX, sizeof(char)))){
-                fprintf(stderr, "memory allocation failure, exiting!");
-                exit(ENOMEM);
-            }
-		} */
+		memset(input, 0, 1024 * sizeof(char)); // zero out the input string
+		printf("@: "); // default shell prompt
+		fgets(input, 1024, stdin); // read 1024 characters from standard input into the input string
+		input[strcspn(input, "\n")] = '\0'; // strip newline character from the input string
 
-		memset(input, 0, 1024 * sizeof(char));
-		printf("@: ");
-		fgets(input, 1024, stdin);
-		input[strcspn(input, "\n")] = '\0'; // strip newline character from input
-
-         if (strcmp(input,"exit") == 0)
+         if (strcmp(input,"exit") == 0) // exit the loop if the user enters the "exit" command
              break;
 
-		char *temp = strtok(input, " ");
-		//strncpy(*av, temp, NAME_MAX*sizeof(char));
-         asprintf(av, "%s", input);
-		while (temp != NULL) {
+		char *temp = strtok(input, " "); // Tokenize the input string using the space character as a delimiter
+         asprintf(av, "%s", input); // put first tokenized string into the zeroth position of the argument vector
+		while (temp != NULL) { // Loop to continue tokenizing the input string and filling the argument vector until the input string ends
             temp = strtok(NULL, " ");
             if (temp==NULL)
                 break;
@@ -74,7 +71,7 @@ int main (void) {
             asprintf((av+ac), "%s", temp);
         }
 
-		 av[ac+1] = NULL;
+		 av[ac+1] = NULL; // null-terminate the argument vector, because C is an old-ass language with strange conventions
 
 		if (strcmp(*av,"cat") == 0) {
 			cat(ac, av);
