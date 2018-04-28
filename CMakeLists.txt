@@ -13,4 +13,4 @@ add_executable(schnell
         ls.c
         ls.h
         mycommands.h
-        myshell.c)
+        myshell.c sleep.c sleep.h)

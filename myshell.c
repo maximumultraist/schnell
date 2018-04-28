@@ -3,6 +3,7 @@
 #include "cat.h"
 #include "ls.h"
 #include "grep.h"
+#include "sleep.h"
 
 /* This #ifndef block is included to add asprintf() support to platforms that do not have it in their C standard library.
  * Even though asprintf() is a non-standard C function, it's extremely useful to include as it greatly simplifies and secures the allocation
@@ -89,6 +90,10 @@ int main(void)
         }
         else if (strcmp(*av, "grep")==0) {
             grep(ac, av);
+            freeargs(ac, av);
+        }
+        else if (strcmp(*av, "sleep")==0) {
+            custom_sleep(ac, av);
             freeargs(ac, av);
         }
         else {
