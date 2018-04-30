@@ -1,16 +1,16 @@
-#include <unistd.h>
-#include <stdio.h>
-#include <sys/stat.h>
-#include <sys/types.h>
+#include "stat.h"
  
-int main(int argc, char **argv)
+int mystat(int argc, char **argv)
 {
-    if(argc != 2)    
-        return 1;
- 
+    if (argc!=1) {
+        fprintf(stderr, "Usage: stat <file or directory>\n");
+        return -1;
+    }
     struct stat fileStat;
-    if(stat(argv[1],&fileStat) < 0)    
-        return 1;
+    if (stat(argv[1], &fileStat)<0) {
+        fprintf(stderr, "Error: file or directory \'%s\' does not exist.\n", argv[1]);
+        return -2;
+    }
  
     printf("File: %s\n",argv[1]);
     printf("---------------------------\n");

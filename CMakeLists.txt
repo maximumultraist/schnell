@@ -16,5 +16,7 @@ add_executable(schnell
         rmdir.h
         mkdir.c
         mkdir.h
+        stat.c
+        stat.h
         mycommands.h
         myshell.c sleep.c sleep.h cd.c cd.h mykill.c mykill.h)
