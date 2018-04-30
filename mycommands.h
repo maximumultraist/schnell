@@ -17,6 +17,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <dirent.h>
+
 #define MAX_ARGS 50
 
 #endif /* MYCOMMANDS_H_ */

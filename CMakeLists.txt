@@ -12,5 +12,9 @@ add_executable(schnell
         grep.h
         ls.c
         ls.h
+        rmdir.c
+        rmdir.h
+        mkdir.c
+        mkdir.h
         mycommands.h
         myshell.c sleep.c sleep.h cd.c cd.h mykill.c mykill.h)

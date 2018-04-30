@@ -1,20 +1,8 @@
-#include <ftw.h>
-#include <stdio.h>
-#include <stdlib.h>
-//this program can and will remove unempty directories
-static int removeDirs(const char *dirName, const struct stat *sbuf, int type, struct FTW *ftwb)
-{
-    if(remove(dirName) < 0) //catches errors with directory names
-    {
-        perror("REMOVAL ERROR");
-        return -1;
-    }
-    return 0;
-}
+#include "rmdir.h"
 
-int main(int argc, char *argv[]) //mainly detects errors in inputs or directories 
+int myrmdir(int argc, char *argv[]) //mainly detects errors in inputs or directories
 {
-    if (argc != 2) //to execute, use ./a.out DIRTOREMOVE
+    if (argc != 2)
     {
         printf("Did not enter directory or path\n");
         exit(1);
@@ -23,6 +11,16 @@ int main(int argc, char *argv[]) //mainly detects errors in inputs or directorie
     {
         perror("NOT A VALID DIRECTORY");
         exit(1);
+    }
+    return 0;
+}
+
+static int removeDirs(const char *dirName, const struct stat *sbuf, int type, struct FTW *ftwb)
+{
+    if(remove(dirName) < 0) //catches errors with directory names
+    {
+        perror("REMOVAL ERROR");
+        return -1;
     }
     return 0;
 }

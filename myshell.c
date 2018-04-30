@@ -6,6 +6,8 @@
 #include "sleep.h"
 #include "cd.h"
 #include "mykill.h"
+#include "rmdir.h"
+#include "mkdir.h"
 
 /* This #ifndef block is included to add asprintf() support to platforms that do not have it in their C standard library.
  * Even though asprintf() is a non-standard C function, it's extremely useful to include as it greatly simplifies and secures the allocation
@@ -104,6 +106,14 @@ int main(void)
         }
         else if (strcmp(*av, "kill") == 0) {
             mykill(ac, av);
+            freeargs(ac, av);
+        }
+        else if (strcmp(*av, "rmdir") == 0) {
+            myrmdir(ac, av);
+            freeargs(ac, av);
+        }
+        else if (strcmp(*av, "mkdir") == 0) {
+            mymkdir(ac, av);
             freeargs(ac, av);
         }
         else {
