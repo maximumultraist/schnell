@@ -21,4 +21,4 @@ add_executable(schnell
         env.h
         env.c
         mycommands.h
-        myshell.c sleep.c sleep.h cd.c cd.h mykill.c mykill.h)
+        myshell.c sleep.c sleep.h cd.c cd.h mykill.c mykill.h wait.c wait.h)

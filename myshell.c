@@ -10,6 +10,7 @@
 #include "mkdir.h"
 #include "stat.h"
 #include "env.h"
+#include "wait.h"
 
 /* This #ifndef block is included to add asprintf() support to platforms that do not have it in their C standard library.
  * Even though asprintf() is a non-standard C function, it's extremely useful to include as it greatly simplifies and secures the allocation
@@ -124,6 +125,10 @@ int main(int argc, char *argv[], char *envp[])
         }
         else if (strcmp(*av, "env") == 0) {
             myenv(envp);
+            freeargs(ac, av);
+        }
+        else if (strcmp(*av, "wait") == 0) {
+            mywait(ac, av);
             freeargs(ac, av);
         }
         else {
