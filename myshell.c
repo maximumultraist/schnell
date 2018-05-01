@@ -9,6 +9,7 @@
 #include "rmdir.h"
 #include "mkdir.h"
 #include "stat.h"
+#include "env.h"
 
 /* This #ifndef block is included to add asprintf() support to platforms that do not have it in their C standard library.
  * Even though asprintf() is a non-standard C function, it's extremely useful to include as it greatly simplifies and secures the allocation
@@ -49,7 +50,7 @@ int asprintf(char** str, char* fmt, ...)
 
 void freeargs(int argc, char* argv[]); // argument array memory-freeing function
 
-int main(void)
+int main(int argc, char *argv[], char *envp[])
 {   // and finally, That Good Shit
     char input[1024]; // allocate a fixed-size character array of 1024 characters for the input string
 
@@ -119,6 +120,10 @@ int main(void)
         }
         else if (strcmp(*av, "stat") == 0) {
             mystat(ac, av);
+            freeargs(ac, av);
+        }
+        else if (strcmp(*av, "env") == 0) {
+            myenv(envp);
             freeargs(ac, av);
         }
         else {
