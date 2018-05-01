@@ -11,6 +11,7 @@
 #include "stat.h"
 #include "env.h"
 #include "wait.h"
+#include "timeout.h"
 
 /* This #ifndef block is included to add asprintf() support to platforms that do not have it in their C standard library.
  * Even though asprintf() is a non-standard C function, it's extremely useful to include as it greatly simplifies and secures the allocation
@@ -129,6 +130,10 @@ int main(int argc, char *argv[], char *envp[])
         }
         else if (strcmp(*av, "wait") == 0) {
             mywait(ac, av);
+            freeargs(ac, av);
+        }
+        else if (strcmp(*av, "timeout") == 0) {
+            timeout(ac, av);
             freeargs(ac, av);
         }
         else {
