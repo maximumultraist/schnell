@@ -13,13 +13,13 @@ static void sigChild(int signum)
 static int new_child(char *argv[])
 {
 	if ((entry.pid = fork()) < 0) {
-		fprintf(stderr, "%s: Cannot fork: %s\n",
+		fprintf(stderr, "%s: Fork failed: %s\n",
 			entry.argv0, strerror(errno));
 		return -1;
 	}
 	if (!entry.pid) {
 		execvp(argv[0], argv);
-		fprintf(stderr, "%s: %s: Cannot exec: %s\n",
+		fprintf(stderr, "%s: %s: Exec failed: %s\n",
 			entry.argv0, argv[0], strerror(errno));
 		_exit(-1);
 	}
