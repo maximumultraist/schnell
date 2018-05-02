@@ -20,5 +20,7 @@ add_executable(schnell
         stat.h
         env.h
         env.c
+        diff.h
+        diff.c
         mycommands.h
         myshell.c sleep.c sleep.h cd.c cd.h mykill.c mykill.h wait.c wait.h timeout.c timeout.h)
